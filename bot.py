@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 
 import logging
+import os
 from aiogram import Bot, Dispatcher, types, executor
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -14,8 +15,8 @@ import business_logic
 class CheckStigma(StatesGroup):
     wait_stigma = State()
 
-
-bot = Bot(token='5609860985:AAEkmMiUWqhAFeco7w23rXKus5YhT9ZDmRY')  # Токен тестового бота testingspamobot
+TOKEN = os.environ["TOKEN"]
+bot = Bot(token=TOKEN)  # Токен  бота checkwelder
 
 dp: Dispatcher = Dispatcher(bot, storage=MemoryStorage())
 
