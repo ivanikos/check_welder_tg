@@ -15,7 +15,7 @@ class CheckStigma(StatesGroup):
     wait_stigma = State()
 
 
-bot = Bot(token='1097747087:AAG_GpsWo1Loj_0dfeF0EStQUEYwGH4xjI0')  # Токен тестового бота testingspamobot
+bot = Bot(token='5609860985:AAEkmMiUWqhAFeco7w23rXKus5YhT9ZDmRY')  # Токен тестового бота testingspamobot
 
 dp: Dispatcher = Dispatcher(bot, storage=MemoryStorage())
 
