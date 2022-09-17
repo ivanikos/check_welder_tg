@@ -49,8 +49,6 @@ async def help_command(message: types.Message):
 
         write_kb = InlineKeyboardMarkup().add(btn_naks).add(writeBtn)
         await message.answer('Пока что это все, что можно выбрать:', reply_markup=write_kb)
-        await message.answer(
-            f'Alpha_test. ver. 0.1, date 09.09.2022', reply_markup=help_kb)
     elif message.text == 'Donate':
         await message.answer('Пока не работает. Жми HELP.')
     else:
@@ -59,6 +57,10 @@ async def help_command(message: types.Message):
 
 @dp.callback_query_handler(lambda c: c.data == '/check_naks')
 async def callback_check_naks(callback_query: types.CallbackQuery):
+    if callback_query.from_user.id != boss_id:
+        await bot.send_message(boss_id, f'Кто-то пытается использовать проверку по клейму:\n'
+                                        f' его ID: {callback_query.from_user.id}, \n'
+                                        f'его username: {callback_query.from_user.username}')
     await bot.send_message(callback_query.from_user.id, 'Введи клеймо сварщика:')
     await CheckStigma.wait_stigma.set()
 
