@@ -37,6 +37,7 @@ def check_welder_naks(stigma):
         time.sleep(3)
         table = driver.find_element(By.XPATH,
                                     '//*[@id="app_registry_personal"]/div/table')  # Таблица с данными на сварщика
+
         WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH,
                                                                                            '//*[@id="app_registry_personal"]/div/table')))
         table.location_once_scrolled_into_view
