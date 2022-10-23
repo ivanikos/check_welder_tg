@@ -16,7 +16,7 @@ def check_test(stigma):
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         driver.set_window_size(1920, 1200)
 
-        kleym = 'bp9k'
+        kleym = '8CKV'
         driver.get('https://naks.ru/registry/personal/')
         WebDriverWait(driver, 10).until(
             expected_conditions.visibility_of_element_located((By.XPATH, '/html/body/div[4]/div/div[3]/form/table/'
@@ -35,6 +35,11 @@ def check_test(stigma):
 
         time.sleep(3)
         table = driver.find_element(By.XPATH, '//*[@id="app_registry_personal"]/div/table')  # Таблица с данными на сварщика
+
+        WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH,
+                                                                                           '//*[@id="app_registry_personal"]/div/table')))
+        table.location_once_scrolled_into_view
+
 
         b = BeautifulSoup(table.get_attribute('innerHTML'), 'html.parser')
         c = b.find_all('td', attrs={'rowspan': '2', 'align': 'center'})  # Верхняя часть таблицы с подписями полей
@@ -114,25 +119,27 @@ def check_test(stigma):
                                      details_attestation_2[16].text.strip(): details_attestation_2[17].text.strip(),
                                      }
 
-        summaty_inf = ''
+        summary_inf = ''
         # Первая строка аттестации
-        summaty_inf.join('Первая строка аттестации:')
+        summary_inf = summary_inf + 'Первая строка аттестации:\n'
         for key in welder_inf.keys():
-            summaty_inf.join(f'{key}   ---   {welder_inf[key]} \n')
+            summary_inf = summary_inf + f'{key}   ---   {welder_inf[key]} \n'
         for key in details_attestation_1.keys():
-            summaty_inf.join(f'{key}  ---  {details_attestation_1[key]} \n')
-        summaty_inf.join('\n\n\n')
+            summary_inf = summary_inf + f'{key}  ---  {details_attestation_1[key]} \n'
+        summary_inf = summary_inf + '\n\n\n'
 
         # Вторая строка аттестации, при наличии
         if second_attestation:
-            summaty_inf.join('Вторая строка аттестации:')
+            summary_inf = summary_inf + 'Вторая строка аттестации:\n'
             for key in welder_inf_second.keys():
-                summaty_inf.join(f'{key}   ---   {welder_inf_second[key]}')
+                summary_inf = summary_inf + f'{key}   ---   {welder_inf_second[key]}\n'
             for key in details_attestation_3:
-                summaty_inf.join(f'{key}  ---  {details_attestation_3[key]}')
+                summary_inf = summary_inf + f'{key}  ---  {details_attestation_3[key]}\n'
 
-        return summaty_inf
+        return print(summary_inf)
 
 
     except Exception as e:
         return print(e)
+
+check_test('8CKV')
