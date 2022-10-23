@@ -38,6 +38,8 @@ def check_welder_naks(stigma):
         table = driver.find_element(By.XPATH,
                                     '//*[@id="app_registry_personal"]/div/table')  # Таблица с данными на сварщика
 
+        WebDriverWait(driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH, table)))
+
         b = BeautifulSoup(table.get_attribute('innerHTML'), 'html.parser')
         c = b.find_all('td', attrs={'rowspan': '2', 'align': 'center'})  # Верхняя часть таблицы с подписями полей
 
