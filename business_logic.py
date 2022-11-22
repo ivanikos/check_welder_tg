@@ -156,7 +156,7 @@ def check_welder_naks(stigma):
 
 
 """
-Функция возвращения информации по сварщику
+Функция возвращения информации по сварщику stigma
 """
 
 def check_welder_att(stigma: dict):
