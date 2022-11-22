@@ -18,7 +18,7 @@ class CheckStigma(StatesGroup):
 
 TOKEN = os.environ["TOKEN"]
 
-bot = Bot(token=TOKEN)  # Токен  бота checkwelder aas
+bot = Bot(token=TOKEN)  # Токен  бота checkwelder
 
 dp: Dispatcher = Dispatcher(bot, storage=MemoryStorage())
 

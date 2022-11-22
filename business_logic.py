@@ -163,7 +163,7 @@ def check_welder_att(stigma: dict):
     welder_att = []
 
     inf_about_welder = f'\nСварщик с клеймом {stigma["stigma"]["text"]} аттестован на сварку:\n'
-    with open('db_welders_att.csv', 'r') as read_file:
+    with open('db_welders_att.csv', 'r', encoding='cp1251') as read_file:
         readed_file = csv.reader(read_file, delimiter=";")
 
         for row in readed_file:
