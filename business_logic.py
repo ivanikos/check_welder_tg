@@ -1,3 +1,5 @@
+import csv
+
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
@@ -150,5 +152,32 @@ def check_welder_naks(stigma):
 
     except Exception as e:
         return print(e)
+
+
+
+"""
+Функция возвращения информации по сварщику
+"""
+
+def check_welder_att(stigma: str):
+    welder_att = []
+
+    inf_about_welder = f'\nСварщик с клеймом {stigma} аттестован на сварку:\n'
+    with open('db_welders_att.csv', 'r') as read_file:
+        readed_file = csv.reader(read_file, delimiter=";")
+
+        for row in readed_file:
+            welder_att.append([row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]])
+
+            if row[0] == stigma:
+                inf_about_welder += f'\nДата допуска от {row[2]} до {row[3]}, Способ сварки - {row[1]},' \
+                                    f' марка стали - {row[4]}, диаметр допуска от {row[5]} до {row[6]},' \
+                                    f'толщина стенки от {row[7]} до {row[8]}.\n'
+
+        if len(inf_about_welder) < 60:
+            inf_about_welder = f'Извини, не нашел в базе аттестованных на АГПЗ сварщиков клеймо {stigma}.'
+
+    return inf_about_welder
+
 
 

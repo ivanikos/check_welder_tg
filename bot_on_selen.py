@@ -2,7 +2,6 @@
 
 import logging
 import os
-import csv
 from aiogram import Bot, Dispatcher, types, executor
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -70,7 +69,7 @@ async def naks_answer(message: types.Message, state: FSMContext):
     await state.update_data(stigma=message)
     stigma = await state.get_data()
     await message.reply('Нужно немного подождать')
-    data_welder = business_logic.check_welder_att(stigma)
+    data_welder = business_logic.check_welder_naks(stigma)
 
     try:
         await message.reply(data_welder)
