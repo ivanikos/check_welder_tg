@@ -170,13 +170,14 @@ def check_welder_att(stigma: dict):
             welder_att.append([row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]])
 
     for row in welder_att:
-        if row[0] == stigma["stigma"]["text"]:
+        if row[0] == stigma["stigma"]["text"].upper():
             inf_about_welder += f'\nДата допуска от {row[2]} до {row[3]}, Способ сварки - {row[1]},' \
                                 f' марка стали - {row[4]}, диаметр допуска от {row[5]} до {row[6]},' \
                                 f'толщина стенки от {row[7]} до {row[8]}.\n'
 
     if len(inf_about_welder) < 60:
-        inf_about_welder = f'Извини, не нашел в базе аттестованных на АГПЗ сварщиков клеймо {stigma["stigma"]["text"]}.'
+        inf_about_welder = f'Извини, не нашел в базе аттестованных на АГПЗ ' \
+                           f'сварщиков клеймо {stigma["stigma"]["text"].upper()}.'
 
     return inf_about_welder
 
