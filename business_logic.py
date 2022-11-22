@@ -176,7 +176,7 @@ def check_welder_att(stigma: dict):
                                 f'толщина стенки от {row[7]} до {row[8]}.\n'
 
     if len(inf_about_welder) < 60:
-        inf_about_welder = f'Извини, не нашел в базе аттестованных на АГПЗ сварщиков клеймо {stigma}.'
+        inf_about_welder = f'Извини, не нашел в базе аттестованных на АГПЗ сварщиков клеймо {stigma["stigma"]["text"]}.'
 
     return inf_about_welder
 
