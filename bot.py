@@ -16,9 +16,8 @@ import business_logic
 class CheckStigma(StatesGroup):
     wait_stigma = State()
 
-TOKEN = os.environ["TOKEN"]
 
-bot = Bot(token=TOKEN)  # Токен  бота checkwelder
+bot = Bot(token='5609860985:AAEkmMiUWqhAFeco7w23rXKus5YhT9ZDmRY')  # Токен  бота checkwelder
 
 dp: Dispatcher = Dispatcher(bot, storage=MemoryStorage())
 
