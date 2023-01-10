@@ -1,0 +1,15 @@
+[Unit]
+Description=Check welder bot
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/vanikos/check_welder_tg
+ExecStart=/usr/bin/python3 /home/vanikos/check_welder_tg/bot.py
+ExecRe=/usr/bin/python3 /home/vanikos/check_welder_tg/bot.py
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
