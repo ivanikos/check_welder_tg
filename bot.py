@@ -51,9 +51,9 @@ async def help_command(message: types.Message):
         write_kb = InlineKeyboardMarkup().add(btn_naks).add(writeBtn)
         await message.answer('Пока что это все, что можно выбрать:', reply_markup=write_kb)
     elif message.text == 'Donate':
-        await message.answer('Пока не работает. Жми HELP.')
+        await message.answer('Пока не работает. Жми HELP.', reply_markup=help_kb)
     else:
-        await message.answer('Не пойму чего ты хочешь, нажми кнопку Help.')
+        await message.answer('Не пойму чего ты хочешь, нажми кнопку Help.', reply_markup=help_kb)
 
 
 @dp.callback_query_handler(lambda c: c.data == '/check_naks')
@@ -73,10 +73,10 @@ async def naks_answer(message: types.Message, state: FSMContext):
     data_welder = business_logic.check_welder_att(stigma)
 
     try:
-        await message.reply(data_welder)
+        await message.reply(data_welder, reply_markup=help_kb)
         await state.finish()
     except:
-        await message.reply('Извини, что-то пошло не так, попробуй ещё раз, пожалуйста.')
+        await message.reply('Извини, что-то пошло не так, попробуй ещё раз, пожалуйста.', reply_markup=help_kb)
         await state.finish()
     await state.finish()
 
